@@ -1,33 +1,35 @@
-const Propietario = require("./Propietario");
-
 module.exports = (Sequelize, DataTypes) => {
-    const Familiar = Sequelize.define('Familiar', {
+    const Tipo = Sequelize.define('Tipo', {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true, 
       },  
-      nombre: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      edad: {
+      precio: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
-      telefono: {
+      descrip: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      numBan: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
-      correo: {
+      numCam: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      capac: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      comodida: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
-      parent: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      FK_ID_Pro: {
+      FK_Hab: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
@@ -36,7 +38,5 @@ module.exports = (Sequelize, DataTypes) => {
             allowNull: false
       }
     }, { timestamps: false });
-
-    
-    return Familiar
+    return Tipo
 } 

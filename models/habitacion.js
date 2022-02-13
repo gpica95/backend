@@ -1,30 +1,27 @@
 module.exports = (Sequelize, DataTypes) => {
-    const Apartamento = Sequelize.define('Apartamento', {
+    const Habitacion = Sequelize.define('Habitacion', {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true, 
       },  
-      NumApt: {
-        type: DataTypes.INTEGER,
-        allowNull: true
+      dispon:{
+         type: DataTypes.INTEGER,
+         allowNull: false,
+         force: true,
       },
-      NumLocal: {
+      numHab: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false,
       },
-     NumQuinta: {
+      FK_Reser_Hab: {
         type: DataTypes.INTEGER,
-        allowNull: true
-      },
-      FK_ProLoc: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       active: {
             type: DataTypes.BOOLEAN,
             allowNull: false
       }
     }, { timestamps: false });
-    return Apartamento
+    return Habitacion
 } 

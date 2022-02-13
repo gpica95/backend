@@ -2,23 +2,18 @@
 import Sequelize from 'sequelize'
 
 
-const sequelize = new Sequelize('smartco', 'root', '13579',   {
+const sequelize = new Sequelize('venetrip', 'root', '13579',   {
     host: 'localhost',
     dialect: 'mysql'
 
 })
 
 const models = {
-    propietario: sequelize.import('./propietario'),
-    acceso: sequelize.import('./acceso'),
-    areasco: sequelize.import('./areasco'),
-    factura: sequelize.import('./factura'),
-    familiar: sequelize.import('./familiar'),
-    control: sequelize.import('./control'),
-    apartamento: sequelize.import('./apartamento'),
-    empleado: sequelize.import('./empleado'),
-    edificio: sequelize.import('./edificio'),
-    gasto: sequelize.import('./gasto'),
+    habitacion: sequelize.import('./habitacion'),
+    cliente: sequelize.import('./cliente'),
+    tipo: sequelize.import('./tipo'),
+    reserva: sequelize.import('./reserva'),
+    establecimiento: sequelize.import('./establecimiento'),
 
 }
 

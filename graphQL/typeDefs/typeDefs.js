@@ -2,198 +2,111 @@ const{ gql } = require('apollo-server-express')
 
 const typeDefs = gql`
  
-type Propietario{
+type Habitacion{
+    id: Int!
+    dispon: Int!
+    numHab: Int!
+    FK_Reser: Int!
+    active: Boolean!
+}
+
+type Cliente{
     id: Int!
     nombre: String!
-    cedula: Int!
+    apellido: String!
+    cedulaCli: Int!
+    nacionalidad: String!
+    fechaNac: Int!
+    sexo: String!
+    infoBanca: String!
+    estaLeal: String!
     correo: String!
-    numprop: Int!
-    telefono: Int!
+    fk_Reser: Int!
     active: Boolean!
 }
 
-type Acceso{
+type Tipo{
     id: Int!
-    cedulaVi: Int!
-    infoVeh: String!
-    horaEn: Int!
-    horaSa: Int!
-    fk_prop: Int!
+    precio: Int!
+    descrip: String!
+    numBa: Int!
+    numCam: Int!
+    capac: Int!
+    comodida: String!
+    FK_Hab: Int!
     active: Boolean!
 }
 
-type Areasco{
-    id: Int!
-    nombre: String!
-    FK_gas: Int!
-    active: Boolean!
-}
-
-type Control{
-    id: Int!
-    NumCo: Int!
-    FK_ID_Acce: Int!
-    active: Boolean!
-}
-
-type Edificio{
+type Establecimiento{
     id: Int!
     nombre: String!
-    numPisos: Int!
-    numApt: Int!
-    numPer: Int!
-    FKPro_Ed: Int!
+    tipo: String!
+    instalaci: String!
+    pais: String!
+    ciudad: String!
+    calle: String!
+    califica: Int!
+    comen: String!
+    FK_Hab: Int!
     active: Boolean!
 }
 
-type Empleado{
+type Reserva{
     id: Int!
-    nombre: String!
-    cedula: Int!
-    labor: String!
-    salario: Int!
-    telefono: Int!
-    infoBanco: Int!
-    fk_areasco: Int!
-    active: Boolean!
-}
-
-type Factura{
-    id: Int!
-    instr: String!
-    monto: Int!
-    iva: Int!
-    apt: Int!
-    FK_CI_Gas: Int!
-    active: Boolean!
-}
-
-type Familiar{
-    id: Int!
-    nombre: String!
-    edad: Int!
-    telefono: Int!
-    correo: String!
-    parent: String!
-    FK_ID_Pro: Int!
-    active: Boolean!
-}
-
-type Gasto{
-    id: Int!
-    mantCal: Int!
-    luz: Int!
-    agua: Int!
-    mantAse: Int!
-    projar: Int!
-    prolimp: Int!
-    bombil: Int!
-    gasnoco: Int!
-    bonos: Int!
-    sueltra: Int!
-    retenc: Int!
-    FK_Fac: Int!
-    active: Boolean!
-}
-
-type Apartamento{
-    id: Int!
-    NumApt: Int!
-    NumLocal: Int!
-    NumQuinta: Int!
-    FK_ProLoc: Int!
+    fechaEn: Int!
+    fechaSa: Int!
     active: Boolean!
 }
 
 type Query{
     
 
-    getPropietarios: [Propietario],
-    getPropietario(id: Int!): Propietario
+    getHabitaciones: [Habitacion],
+    getHabitacion(id: Int!): Habitacion
 
-    getAccesos: [Acceso],
-    getAcceso(id: Int!): Acceso
+    getClientes: [Cliente],
+    getCliente(id: Int!): Cliente
 
-    getAreasco: [Areasco],
-    getAreaco(id: Int!): Areasco
+    getEstablecimientos: [Establecimiento],
+    getEstablecimiento(id: Int!): Establecimiento
 
-    getEdificios: [Edificio],
-    getEdificio(id: Int!): Edificio
+    getReservas: [Reserva],
+    getReserva(id: Int!): Reserva
 
-    getEmpleados: [Empleado],
-    getEmpleado(id: Int!): Empleado
+    getTipos: [Tipo],
+    getTipo(id: Int!): Tipo
 
-    getFacturas: [Factura],
-    getFactura(id: Int!): Factura
+    updateHabitaciones: [Habitacion],
+    updateHabitacion(id: Int!): Habitacion
 
-    getFamiliares: [Familiar],
-    getFamiliar(id: Int!): Familiar
+    updateClientes: [Cliente],
+    updateCliente(id: Int!): Cliente
 
-    getGastos: [Gasto],
-    getGasto(id: Int!): Gasto
+    updateEstablecimientos: [Establecimiento],
+    updateEstablecimiento(id: Int!): Establecimiento
 
-    getApartamentos: [Apartamento],
-    getApartamento(id: Int!): Apartamento
+    updateReservas: [Reserva],
+    updateReserva(id: Int!): Reserva
 
-    getControles: [Control],
-    getControl(id: Int!): Control
-
-    updatePropietarios: [Propietario],
-    updatePropietario(id: Int!): Propietario
-
-    updateAccesos: [Acceso],
-    updateAcceso(id: Int!): Acceso
-
-    updateAreasco: [Areasco],
-    updateAreaco(id: Int!): Areasco
-
-    updateEdificios: [Edificio],
-    updateEdificio(id: Int!): Edificio
-
-    updateEmpleados: [Empleado],
-    updateEmpleado(id: Int!): Empleado
-
-    updateFacturas: [Factura],
-    updateFactura(id: Int!): Factura
-
-    updateFamiliares: [Familiar],
-    updateFamiliar(id: Int!): Familiar
-
-    updateGastos: [Gasto],
-    updateGasto(id: Int!): Gasto
-
-    updateApartamentos: [Apartamento],
-    updateApartamento(id: Int!): Apartamento
-
-    updateControles: [Control],
-    updateControl(id: Int!): Control
+    updateTipos: [Tipo],
+    updateTipo(id: Int!): Tipo
 
 }
 
 type Mutation{
 
-    createPropietario(nombre: String!, cedula: Int!, correo: String!, numprop: Int!, telefono: Int!, active: Boolean!): Propietario!
-    createAcceso(cedulaVi: Int!, infoVeh: String!, horaEn: Int!, horaSa: Int!,fk_prop: Int!, active: Boolean!): Acceso!
-    createAreasco(nombre: String!,FK_gas: Int!, active: Boolean!): Areasco!
-    createControl(NumCo: Int!,FK_ID_Acce: Int!, active: Boolean!): Control!
-    createEdificio(nombre: String!, numPisos: Int!, numApt: Int!, numPer: Int!, FKPro_Ed: Int!, active: Boolean!): Edificio!
-    createEmpleado(nombre: String!, cedula: Int!, labor: String!, salario: Int!, telefono: Int!, infoBanco: Int!,fk_areasco: Int!, active: Boolean!): Empleado!
-    createFactura(instr: String!, monto: Int!, iva: Int!, apt: Int!,FK_CI_Gas: Int!, active: Boolean!): Factura!
-    createFamiliar(nombre: String!, edad: Int!, telefono: Int!, correo: String!, parent: String!,FK_ID_Pro: Int!, active: Boolean!): Familiar!
-    createGasto(mantCal: Int!, luz: Int!, agua: Int!, mantAse: Int!, projar: Int!, prolimp: Int!, bombil: Int!, gasnoco: Int!, bonos: Int!, sueltra: Int!, retenc: Int!, FK_Fac: Int!, active: Boolean!): Gasto!
-    createApartamento(NumApt: Int!, NumLocal: Int!,NumQuinta: Int!, FK_ProLoc: Int!, active: Boolean!): Apartamento!
+    createHabitacion(dispon: Int!, numHab: Int!, FK_Reser: Int!, active: Boolean!): Habitacion!
+    createCliente(nombre: String!, apellido: String!, cedulaCli: Int!, nacionalidad: String!, fechaNac: Int!, sexo: String!, infoBanca: String!, estaLeal: String!, correo: String!, fk_Reser: Int!, active: Boolean!): Cliente!
+    createTipo(precio: Int!, descrip: String!, numBan: Int!, numCam: Int!, capac: Int!, comodida: String!, FK_Hab: Int!, active: Boolean!): Tipo!
+    createEstablecimiento(nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
+    createReserva(fechaEn: Int!, fechaSa: Int!, active: Boolean!): Reserva!
     
 
-    updatePropietario(nombre: String!, cedula: Int!, correo: String!, numprop: Int!, telefono: Int!, active: Boolean!): Propietario!
-    updateAcceso(cedulaVi: Int!, infoVeh: String!, horaEn: Int!, horaSa: Int!,fk_prop: Int!, active: Boolean!): Acceso!
-    updateAreasco(nombre: String!,FK_gas: Int!, active: Boolean!): Areasco!
-    updateControl(NumCo: Int!,FK_ID_Acce: Int!, active: Boolean!): Control!
-    updateEdificio(nombre: String!, numPisos: Int!, numApt: Int!, numPer: Int!, FKPro_Ed: Int!, active: Boolean!): Edificio!
-    updateEmpleado(nombre: String!, cedula: Int!, labor: String!, salario: Int!, telefono: Int!, infoBanco: Int!,fk_areasco: Int!, active: Boolean!): Empleado!
-    updateFactura(instr: String!, monto: Int!, iva: Int!, apt: Int!,FK_CI_Gas: Int!, active: Boolean!): Factura!
-    updateFamiliar(nombre: String!, edad: Int!, telefono: Int!, correo: String!, parent: String!,FK_ID_Pro: Int!, active: Boolean!): Familiar!
-    updateGasto(mantCal: Int!, luz: Int!, agua: Int!, mantAse: Int!, projar: Int!, prolimp: Int!, bombil: Int!, gasnoco: Int!, bonos: Int!, sueltra: Int!, retenc: Int!, FK_Fac: Int!, active: Boolean!): Gasto!
-    updateApartamento(NumApt: Int!, NumLocal: Int!,NumQuinta: Int!, FK_ProLoc: Int!, active: Boolean!): Apartamento!
+    updateHabitacion(dispon: Int!, numHab: Int!, FK_Reser: Int!, active: Boolean!): Habitacion!
+    updateCliente(nombre: String!, apellido: String!, cedulaCli: Int!, nacionalidad: String!, fechaNac: Int!, sexo: String!, infoBanca: String!, estaLeal: String!, correo: String!, fk_Reser: Int!, active: Boolean!): Cliente!
+    updateTipo(precio: Int!, descrip: String!, numBan: Int!, numCam: Int!, capac: Int!, comodida: String!, FK_Hab: Int!, active: Boolean!): Tipo!
+    updateEstablecimiento(nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
+    updateReserva(fechaEn: Int!, fechaSa: Int!, active: Boolean!): Reserva!
     
 }
 `
